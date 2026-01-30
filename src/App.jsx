@@ -2,19 +2,24 @@ import './App.css'
 import Header from './Components/Header'
 import Footer from './Components/Footer'
 import Card from './Components/Card'
-import { useState } from "react";
-import { db } from './db/db';
+import Item from './Components/Item'
+
+import React, { useState } from 'react'
+import { db } from './db/db'
 
 function App() {
-  const [customer, setCustomer] = useState({});
-  const [total, setTotal] = useState(0);
-  const [products, setProducts] = useState([]);
-  const [modal, setModal] = useState(false);
-  const [data, setData] = useState(db);
+  const [data] = useState(db)
+  const [cart, setCart] = useState([])
+  const [showCart, setShowCart] = useState(false)
 
   return (
     <>
-      <Header />
+      <Header
+        cart={cart}
+        setShowCart={setShowCart}
+      />
+
+      {showCart && <Item cart={cart} />}
 
       <main className="container-xl mt-5">
         <h2 className="text-center">Nuestra Colección</h2>
@@ -22,7 +27,11 @@ function App() {
         <div className="row justify-content-center">
           {data.map((guitar) => (
             <div key={guitar.id} className="col-md-6 col-lg-4 my-4">
-              <Card guitar={guitar} />
+              <Card
+                guitar={guitar}
+                cart={cart}
+                setCart={setCart}
+              />
             </div>
           ))}
         </div>
@@ -30,7 +39,7 @@ function App() {
 
       <Footer />
     </>
-  );
+  )
 }
 
-export default App;
+export default App
