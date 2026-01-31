@@ -777,3 +777,38 @@ button:not(:disabled),
     z-index: 10;
   }
 }
+
+/* Estilos Específicos del Carrito */
+.carrito {
+  background-color: transparent;
+  border: none;
+  position: relative; /* Indispensable para que el hijo absoluto se posicione respecto a esto */
+  padding: 5px;       /* Área de hover un poco más grande */
+  cursor: pointer;
+}
+
+/* El menú desplegable (Oculto por defecto) */
+.carrito #carrito {
+  display: none;
+  position: absolute;
+  top: 100%;    /* Justo debajo del icono */
+  right: 0;     /* Alineado a la derecha del contenedor */
+  background-color: white;
+  width: 300px; /* Ancho fijo para que la tabla se vea bien */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+
+/* Acción de Hover: Al pasar el mouse sobre .carrito, mostrar #carrito */
+.carrito:hover #carrito {
+  display: block;
+}
+
+/* Controlar tamaño de imagen dentro de la tabla */
+#carrito img {
+  width: 50px; /* Un poco más grande para que se aprecie */
+  display: block;
+  margin: 0 auto;
+}
